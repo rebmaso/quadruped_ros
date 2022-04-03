@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="false"/>
+  <arg name="world" default="big.world"/>
+  <arg name="debug" default="false"/>
+  <arg name="rviz" default="true"/>
+  <arg name="model" default="$(find dogbot_description)/urdf/dogbot.xacro"/>
+  
+  <arg name="postgres_log" default="false" />
+  <arg name="namespace" default="dogbot" />
+  
+    <env name="GAZEBO_MODEL_PATH" value="$(find dogbot_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)" />
+    
+    <param name="robot_description" textfile="$(find dogbot_description)/urdf/dogbot.urdf" />
+
+  <!-- Use the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find dogbot_gazebo)/worlds/$(arg world)"/>   
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="verbose" value="false" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    
+  </include>
+
+  <!-- now set the namespace and add a dog to the world -->
+  <group ns="$(arg namespace)">
+
+    <include file="$(find dogbot_gazebo)/launch/dog.launch">
+      <arg name="postgres_log" value="$(arg postgres_log)" />
+      <arg name="model" value="$(arg model)" />
+      <arg name="paused" value="$(arg paused)"/>
+    </include>
+
+    <!-- <include file="$(find popt)/launch/gmapping.launch" /> -->
+
+  </group>
+
+
+  <group if="$(arg rviz)">
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rviz_dogbot)/rviz/config_1.rviz" output="log"/>
+  </group>
+
+ 
+</launch>

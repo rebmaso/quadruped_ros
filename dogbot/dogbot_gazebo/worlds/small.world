@@ -1,0 +1,133 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+	 <scene>
+	    <shadows>0</shadows>
+  </scene>
+    <physics type="ode">
+      <gravity>0 0 -9.81</gravity>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>20</iters>
+          <sor>1.0</sor>
+        </solver>
+        <constraints>
+          <cfm>0.0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>100.0</contact_max_correcting_vel>
+          <contact_surface_layer>0.0</contact_surface_layer>
+        </constraints>
+      </ode>
+      <real_time_update_rate>200</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+    </physics>
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane
+    <include>
+      <uri>model://ground_plane</uri>
+    </include> -->
+
+    <!-- FLOOR -->
+    
+    <include>
+      <uri>model://floor_small</uri>
+		<name>floor</name>
+		<pose>2 -4.5 0 0 0 1.5708</pose>
+    </include>
+
+    <!-- ROOM -->
+
+    <include>
+      <uri>model://walls2</uri>
+			<name>walls</name>
+      <pose>2 -4.5 0 0 0 1.5708</pose>
+    </include>
+
+    <!-- IDs -->
+
+    <include>
+      <uri>model://id1</uri>
+			<name>id1</name>
+      <pose>2 -7.9811 0.8230 3.1416 1.5708 3.1416</pose> 
+    </include>
+    
+    <include>
+      <uri>model://id2</uri>
+			<name>id2</name>
+      <pose>-1.6 -7.9811 0.8230 3.1416 1.5708 3.1416</pose>
+    </include>
+    
+    <include>
+      <uri>model://id3</uri>
+			<name>id3</name>
+      <pose>2 -1.0569 0.8230 3.1416 1.5708 3.1416</pose>
+    </include>
+    
+    <!-- RANDOM STUFF: -->
+    
+    <include>
+      <uri>model://bookshelf</uri>
+			<name>bookshelf1</name>
+      <pose>-1.5 -5.5 0 0 0 1.5708</pose>
+    </include>
+    
+    <include>
+      <uri>model://bookshelf</uri>
+			<name>bookshelf2</name>
+      <pose>-1.5 -4.5 0 0 0 1.5708</pose>
+    </include>
+    
+    <!-- OBSTACLES: -->
+    
+    <!-- <include>
+      <uri>model://turtle1</uri>
+			<name>turtle1</name>
+      <pose>0.13 -2 0.05 0 0 3</pose>
+    </include>
+
+    <include>
+      <uri>model://turtle2</uri>
+			<name>turtle2</name>
+      <pose>0.9 -4.43 0.05 0 0 2</pose>
+    </include> 
+
+    <include>
+      <uri>model://cone</uri>
+			<name>cone</name>
+      <pose>0.9 -4.43 0.05 0 0 2</pose>
+    </include>
+
+    <include>
+      <uri>model://turtle3</uri>
+			<name>turtle3</name>
+      <pose>3.7 -4.56 0.05 0 0 1</pose>
+    </include>   -->
+    
+      </world>
+</sdf>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

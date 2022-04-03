@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<launch>
+
+	<arg name="target_id" default="id_2"/> 
+	<arg name="slam" default="true"/> 
+
+	<!-- MAIN -->
+    
+	<node name="main" pkg="popt" type="main" args="$(arg target_id)" output="screen"/> <!-- launch-prefix="xterm -e gdb - - args" -->
+
+	<!-- HECTORSLAM -->
+
+	<group if="$(arg slam)">
+
+	<!-- crea una frame base_stabilized, figlia di base_link. aggiungendo un offset rpy -->
+	<!-- <node pkg="hector_imu_attitude_to_tf" type="imu_attitude_to_tf_node" name="imu_attitude_to_tf_node" output="screen">
+		<remap from="imu_topic" to="/dogbot/imu"/>
+	</node> -->
+
+	<!--  the slam node -->
+	<node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen" launch-prefix="xterm -e">
+		<param name="scan_topic" value="laser/scan" />
+		<param name="output_timing" value="false"/>
+		<param name="use_tf_scan_transformation" value="true"/>
+		<param name="use_tf_pose_start_estimate" value="false"/>
+
+		<param name="map_pub_period" value="1.0"/>
+		<!-- need these ones to have faster map updates -->
+		<!-- <param name="map_update_distance_thresh" value="0.05"/>
+    	<param name="map_update_angle_thresh" value="0.05" /> -->
+
+		<param name="laser_z_min_value" value = "-0.3"/>
+		
+		<param name="update_factor_free" value="0.3"/>
+
+		<param name="map_resolution" value="0.05"/>
+		<param name="map_size" value="1024"/>
+		<param name="map_start_x" value="0.5"/>
+		<param name="map_start_y" value="0.5"/>
+		<param name="map_multi_res_levels" value="1"/>
+
+		<param name="pub_map_odom_transform" value="true"/>
+		<!-- hector_mapping's state estimate is applied as a child/parent relationship between 
+		a generic map frame and the real base_link frame. can choose base_stabilized 
+		if using hector stabilizer package. we can then access the estimate through the tf tree -->
+		<param name="map_frame" value="map" /> 
+		<param name="base_frame" value="base_link" /> <!-- base_stabilized -->
+		<param name="odom_frame" value="base_link" /> <!-- base_stabilized -->
+    </node>
+
+	</group>
+
+	<node name="converter" pkg="popt" type="converter" output="screen"/>
+
+</launch>
