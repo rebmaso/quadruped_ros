@@ -3,7 +3,7 @@
 
 # RL final project - quadruped robot
 
-This repository demonstrates how to control a quadrupedal robot (namely, a React Robotics Dogbot) by integrating libraries such as Towr, Idyntree and Alglib using Ros. The task that is shown here consists in looking for a user-specified target QR code among 3 rooms, whose location is known and also assigned by the user. the robot returns to the home location either after finding the right QR code, or after all rooms have been unsuccesfully explored (QR code not found).
+This repository demonstrates a control and navigation pipeline for a quadrupedal robot (a React Robotics Dogbot). This project integrates libraries like Towr, Idyntree and Alglib using Ros. The robot task that is shown here consists in looking for a user-specified target QR code among 3 rooms, whose location is known and also assigned by the user. the robot returns to the home location either after finding the right QR code, or after all rooms have been unsuccesfully explored (QR code not found).
 The control algorithm implemented in [Controller](popt/src/client/Controller.cpp) is inspired by the whole-body controller in [this paper](https://www.sciencedirect.com/science/article/abs/pii/S0094114X21001701#!). The navigation module in [Planner](popt/src/client/Planner.cpp) is instead based on the [artificial potential fields](https://link.springer.com/chapter/10.1007/978-1-4613-8997-2_29) method. The app that uses these libraries is in [Main](popt/src/client/Main.cpp). To take a look at the demo app in action, please watch [this video](media/presentation.mp4)
 
 ## Setting things up
