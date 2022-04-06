@@ -14,21 +14,21 @@ Install all external dependencies (Ros Noetic, Idyntree, Zbar, Ifopt, and Hector
 
 `` sudo apt-get install ros-noetic-desktop-full zbar-tools ros-noetic-ifopt ros-noetic-hector-slam``
 
-Follow [these instructions](https://github.com/robotology/idyntree#installation) to install Idyntree with Conda or build it from source.
+Follow [these instructions](https://github.com/robotology/idyntree#installation) to install Idyntree with Conda, or build it from source.
 
 This project also uses Alglib and Towr, but you don't need to install them. The headers are in the [include](popt/include) folder.
 
 Clone the repo in your current ros workspace and 
 
-`` source ~/progetto_dogbot/devel/setup.bash ``
+`` source ~/<your_ws>/devel/setup.bash ``
 
-Build the workspace:
+Build the workspace with the release flag:
 
 `` catkin_make -DCMAKE_BUILD_TYPE=Release ``
 
 ## Launching the simulator
 
-Launch the world and the dogbot model in gazebo:
+Spawn the world and the dogbot model in gazebo:
 
 `` roslaunch dogbot_gazebo dogbot_sim.launch <gui:=false> <rviz:=true>``
 
