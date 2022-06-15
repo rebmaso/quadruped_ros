@@ -3,14 +3,14 @@
 
 # quadruped_ros
 
-This repository demonstrates a navigation task for a quadrupedal robot (a React Robotics Dogbot). The project integrates libraries like Towr, Idyntree and Alglib using Ros. The demo task consists in looking for a user-specified target QR code among 3 rooms, whose location is known and also assigned by the user. the robot returns to the home location either after finding the right QR code, or after all rooms have been unsuccesfully explored (QR code not found).
+Full navigation stack (control + navigation) for a quadruped robot (it's tested on a React Robotics Dogbot). It includes a demo app. The project integrates libraries such as [Towr](https://github.com/ethz-adrl/towr), [Idyntree](https://github.com/robotology/idyntree) and [Alglib](https://www.alglib.net/) in ROS. The demo task consists in looking for a user-specified target QR code among 3 rooms, whose location is known and also assigned by the user. the robot returns to the home location either after finding the right QR code, or after all rooms have been unsuccesfully explored (QR code not found).
 The control algorithm implemented in [Controller](popt/src/client/Controller.cpp) is inspired by the whole-body controller in [this paper](https://www.sciencedirect.com/science/article/abs/pii/S0094114X21001701#!). The navigation module in [Planner](popt/src/client/Planner.cpp) is instead based on the [artificial potential fields](https://link.springer.com/chapter/10.1007/978-1-4613-8997-2_29) method. The app that uses these libraries is in [Main](popt/src/client/Main.cpp). To take a look at the demo app in action, please watch [this video](media/presentation.mp4).
 
 ## Setting things up
 
-This project has been tested on Ros Noetic.
+This project has been tested on ROS Noetic.
 
-Install all external dependencies (Ros Noetic, Idyntree, Zbar, Ifopt, and Hector Mapping):
+Install all external dependencies (ROS Noetic, Idyntree, Zbar, Ifopt, and Hector Mapping):
 
 `` sudo apt-get install ros-noetic-desktop-full zbar-tools ros-noetic-ifopt ros-noetic-hector-slam``
 
@@ -18,7 +18,7 @@ Follow [these instructions](https://github.com/robotology/idyntree#installation)
 
 This project also uses Alglib and Towr, but you don't need to install them. The headers are in the [include](popt/include) folder.
 
-Clone the repo in your current ros workspace and 
+Clone the repo in your current ROS workspace and 
 
 `` source ~/<your_ws>/devel/setup.bash ``
 
